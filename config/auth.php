@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'paspport',
+            'driver' => 'passport',
             'provider' => 'users',
         ],
     ],
