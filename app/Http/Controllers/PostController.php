@@ -12,7 +12,12 @@ class PostController extends Controller
     public function index()
     {
        $post = Post::all();
-       return response()->json($post);
+       $category = Category::all();
+
+       return response()->json([
+           'posts' => $post,
+           'category' => $category
+        ]);
     }
 
     public function create()
@@ -39,7 +44,7 @@ class PostController extends Controller
         $post = Post::create([
             'title' => $request->title,
             'post_slug' => str_slug($request->title),
-            'content' => $request->content,
+            'post_body' => $request->post_body,
             'category_id' => $request->category_id,
             'post_image' => 'uploads/post/' . $post_image_name,
             'user_id' => Auth::id()
@@ -76,7 +81,7 @@ class PostController extends Controller
 
         $post->post_slug = str_slug($request->title);
 
-        $post->content = $request->content;
+        $post->post_body = $request->post_body;
 
         $post->category_id = $request->category_id;
 
@@ -87,6 +92,6 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        Post::delete($id);
+        Post::destroy($id);
     }
 }
