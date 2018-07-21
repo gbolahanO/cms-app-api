@@ -39,7 +39,7 @@ class PostController extends Controller
         $post = Post::create([
             'title' => $request->title,
             'post_slug' => str_slug($request->title),
-            'post_body' => $request->post_body,
+            'content' => $request->content,
             'category_id' => $request->category_id,
             'post_image' => 'uploads/post/' . $post_image_name,
             'user_id' => Auth::id()
@@ -76,7 +76,7 @@ class PostController extends Controller
 
         $post->post_slug = str_slug($request->title);
 
-        $post->post_body = $request->post_body;
+        $post->content = $request->content;
 
         $post->category_id = $request->category_id;
 
