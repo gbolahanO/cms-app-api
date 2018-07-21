@@ -2,17 +2,16 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Post::class, function (Faker $faker) {
+$factory->define(App\Post::class, function (Faker $faker) {
+
+    $sentence = $faker->sentence();
+
     return [
-        'user_id' => function () {
-            return factory(App\User::class)->create()->id;
-        },
-        'category_id' => function () {
-            return factory(App\User::class)->create()->id;
-        },
-        'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'post_body' => $faker->paragraphs($nb = 3, $asText = false),
-        'post_slug' => str_slug($faker->sentence($nbWords = 6, $variableNbWords = true)),
-        'post_image' => $faker->imageUrl($width = 640, $height = 480)
+        'user_id' => random_int(1, 1),
+        'category_id' => random_int(1, 3),
+        'title' => $sentence,
+        'post_body' => $faker->paragraph($nbSentences = 10, $variableNbSentences = true),
+        'post_slug' => str_slug($sentence),
+        'post_image' => $faker->imageUrl($width = 640, $height = 480),
     ];
 });
