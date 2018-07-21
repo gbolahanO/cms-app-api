@@ -10,7 +10,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
         'user_id' => random_int(1, 1),
         'category_id' => random_int(1, 3),
         'title' => $sentence,
-        'content' => $faker->paragraph($nbSentences = 10, $variableNbSentences = true),
+        'content' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true),
         'post_slug' => str_slug($sentence),
         'post_image' => $faker->imageUrl($width = 640, $height = 480),
     ];
