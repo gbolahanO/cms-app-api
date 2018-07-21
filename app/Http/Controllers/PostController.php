@@ -41,7 +41,7 @@ class PostController extends Controller
             'post_slug' => str_slug($request->title),
             'post_body' => $request->post_body,
             'category_id' => $request->category_id,
-            'post_image' => 'uploads/post' . $post_image_name,
+            'post_image' => 'uploads/post/' . $post_image_name,
             'user_id' => Auth::id()
         ]);
 
