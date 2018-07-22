@@ -53,7 +53,7 @@ class CategoryController extends Controller
     {
         $category = Category::findorfail($id);
 
-        foreach ($category->posts as $post) {
+        foreach ($category->post as $post) {
             $post->forceDelete();
         }
 
