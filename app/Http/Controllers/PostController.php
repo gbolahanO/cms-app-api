@@ -66,7 +66,7 @@ class PostController extends Controller
     {
         $post = Post::findorfail($id);
 
-        if ($request->hashFile('post_image'))
+        if ($request->hasFile('post_image'))
         {
             $post_image = $request->post_image;
 
@@ -81,7 +81,7 @@ class PostController extends Controller
 
         $post->post_slug = str_slug($request->title);
 
-        $post->post_body = $request->post_body;
+        $post->content = $request->content;
 
         $post->category_id = $request->category_id;
 
