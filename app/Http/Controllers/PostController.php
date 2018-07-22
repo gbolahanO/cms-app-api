@@ -34,12 +34,18 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->hasFile('post_image'))
+        {
 
-        $post_image = $request->post_image;
+            $post_image = $request->post_image;
 
-        $post_image_name = time().$post_image->getClientOriginalName();
+            $post_image_name = time().$post_image->getClientOriginalName();
 
-        $post_image->move('uploads/posts', $post_image_name);
+            $post_image->move('uploads/posts/', $post_image_name);
+
+        } else {
+            $post_image_name = 'noimage.jpg';
+        }
 
         $post = Post::create([
             'title' => $request->title,
@@ -72,9 +78,9 @@ class PostController extends Controller
 
             $post_image_name = time().$post_image->getClientOriginalName();
 
-            $post_image->move('uploads/posts', $post_image_name);
+            $post_image->move('uploads/posts/', $post_image_name);
 
-            $post->post_image = 'uploads/post' . $post_image_name;
+            $post->post_image = 'uploads/post/' . $post_image_name;
         }
 
         $post->title = $request->title;
