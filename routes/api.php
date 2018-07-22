@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::resource('post', 'PostController');
+    Route::resource('category', 'CategoryController');
 });
 
 Route::get('/test', function() {

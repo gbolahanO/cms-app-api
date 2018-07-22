@@ -22,7 +22,7 @@ class CategoryController extends Controller
     {
 
         $category = Category::create([
-            'name' => $request->name,
+            'name' => $request->name
         ]);
 
         $category->save();
