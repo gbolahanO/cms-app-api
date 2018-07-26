@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::resource('category', 'CategoryController');
 });
 
+Route::get('/blog', 'FrontendController@index');
+
 Route::get('/test', function() {
     $data = [
         'success' => 'yes'
