@@ -5,18 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Post;
 use \App\Category;
+use Auth;
+use \App\User;
 
 class FrontendController extends Controller
 {
     public function index()
     {
         $news = Category::find(1)->post;
-        $lifestyle = Category::find(2)->post;
+        // $lifestyle = Category::find(2)->post;
+        $firstLifestyle = Post::where('category_id', 2)->orderBy('created_at', 'desc')->take(1)->first();
+        $secondLifestyle = Post::where('category_id', 2)->orderBy('created_at', 'desc')->skip(1)->take(1)->first();
+        $firstFresh = Post::where('category_id', 3)->orderBy('created_at', 'desc')->take(1)->first();
+        $secondFresh = Post::where('category_id', 3)->orderBy('created_at', 'desc')->skip(1)->take(1)->first();
         $fresh = Category::find(3)->post;
+        $post = Auth::id();
 
         return response()->json([
+            'auth' => $post,
             'news' => $news,
-            'lifstyle' => $lifestyle,
+            'firstLifestyle' => $firstLifestyle,
+            'secondLifestyle' => $secondLifestyle,
+            'firstFresh' => $firstFresh,
+            'secondFresh' => $secondFresh,
             'fresh' => $fresh
         ]);
 
