@@ -20,6 +20,9 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
 
         $category = Category::create([
             'name' => $request->name
@@ -39,8 +42,11 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        
         $category = Category::findorfail($id);
-
 
         $category->name = $request->name;
 
