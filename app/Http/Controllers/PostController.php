@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
-use Auth;
 
 class PostController extends Controller
 {
@@ -60,7 +59,7 @@ class PostController extends Controller
             'content' => $request->content,
             'category_id' => $request->category_id,
             'post_image' => 'uploads/post/' . $post_image_name,
-            'user_id' => Auth::id()
+            'user_id' => '1'
         ]);
 
         $post->save();
