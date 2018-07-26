@@ -34,6 +34,13 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required',
+            'post_image' => 'required|max:2048|mimes:jpeg,jpg,png,bmp,gif'
+        ]);
+
         if ($request->hasFile('post_image'))
         {
 
@@ -70,6 +77,12 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required'
+        ]);
+
         $post = Post::findorfail($id);
 
         if ($request->hasFile('post_image'))
