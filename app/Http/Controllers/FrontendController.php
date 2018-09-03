@@ -36,6 +36,10 @@ class FrontendController extends Controller
     public function single_post($slug)
     {
         $post = Post::where('post_slug', $slug)->firstorfail();
-        return response()->json($post);
+        $category = $post->category->name;
+        return response()->json([
+            "post" => $post,
+            "category" => $category
+            ]);
     }
 }
