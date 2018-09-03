@@ -42,4 +42,14 @@ class FrontendController extends Controller
             "category" => $category
             ]);
     }
+
+    public function category_posts($id)
+    {
+        $category = Category::find($id);
+        $category_post = $category->post;
+
+        return response()->json([
+            "category_post" => $category_post
+        ]);
+    }
 }
