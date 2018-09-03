@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 });
 
 Route::get('/blog', 'FrontendController@index');
+Route::get('/blog/{slug}', 'FrontendController@single_post');
 
 Route::get('/test', function() {
     $data = [
