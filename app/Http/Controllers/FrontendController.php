@@ -49,7 +49,7 @@ class FrontendController extends Controller
         $category_post = $category->post;
 
         return response()->json([
-            "category_post" => $category_post
+            "category_posts" => $category_post
         ]);
     }
 }
